@@ -1,0 +1,58 @@
+﻿@model NetSchoolWeb.Models.Classroom
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Classroom</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Floor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Floor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Corridor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Corridor)
+        </dd>
+
+    </dl>
+</div>
+
+<hr />
+<h4>Etudiants de la classe</h4>
+
+@Html.Action("List", "Student")
+@*@{ Html.RenderAction("List", "Student"); }*@
+
+<hr />
+<h4>Teacher</h4>
+
+@Html.Partial("_TeacherMaster", Model.Teacher)
+@*@{ Html.RenderPartial("Views/Shared/_TeacherMaster.cshtml"); }*@
+
+
+@*@RenderPage("Views/Shared/_TeacherMaster.cshtml", Model.Teacher)*@
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ClassroomID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

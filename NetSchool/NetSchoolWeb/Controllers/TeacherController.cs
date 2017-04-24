@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using NetSchoolWeb.Data;
 using NetSchoolWeb.Models;
+using System.Globalization;
 
 namespace NetSchoolWeb.Controllers
 {
@@ -16,9 +17,19 @@ namespace NetSchoolWeb.Controllers
         private SchoolDb db = new SchoolDb();
 
         // GET: Teacher
+        [Route("Prof")]
+        [Route("Prof/List")]
         public ActionResult Index()
         {
-            return View(db.Persons.ToList());
+            return View(db.Teachers.ToList());
+        }
+
+        public ActionResult IndexDateFilter(string datetime)
+        {
+            DateTime hiringDate;
+            DateTime.TryParseExact(datetime, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.None, out hiringDate);
+
+            return View("Index", db.Teachers.Where(t => t.HiringDate > hiringDate).ToList());
         }
 
         // GET: Teacher/Details/5
@@ -44,14 +55,14 @@ namespace NetSchoolWeb.Controllers
 
         // POST: Teacher/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "PersonID,FirstName,LastName,Age,Email,Discipline,HiringDate")] Teacher teacher)
         {
             if (ModelState.IsValid)
             {
-                db.Persons.Add(teacher);
+                db.Teachers.Add(teacher);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -76,7 +87,7 @@ namespace NetSchoolWeb.Controllers
 
         // POST: Teacher/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "PersonID,FirstName,LastName,Age,Email,Discipline,HiringDate")] Teacher teacher)

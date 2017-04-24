@@ -171,6 +171,25 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Student\Create.cshtml" />
+    <Content Include="Views\Student\Delete.cshtml" />
+    <Content Include="Views\Student\Details.cshtml" />
+    <Content Include="Views\Student\Edit.cshtml" />
+    <Content Include="Views\Student\Index.cshtml" />
+    <Content Include="Views\Student\IndexList.cshtml" />
+    <Content Include="Views\Teacher\Create.cshtml" />
+    <Content Include="Views\Teacher\Delete.cshtml" />
+    <Content Include="Views\Teacher\Details.cshtml" />
+    <Content Include="Views\Teacher\Edit.cshtml" />
+    <Content Include="Views\Teacher\Index.cshtml" />
+    <Content Include="Views\Classroom\Create.cshtml" />
+    <Content Include="Views\Classroom\Delete.cshtml" />
+    <Content Include="Views\Classroom\Details.cshtml" />
+    <Content Include="Views\Classroom\Edit.cshtml" />
+    <Content Include="Views\Classroom\Index.cshtml" />
+    <Content Include="Views\Classroom\View.cshtml" />
+    <Content Include="Views\Shared\_StudentsList.cshtml" />
+    <Content Include="Views\Shared\_TeacherMaster.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -180,8 +199,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Student\" />
-    <Folder Include="Views\Teacher\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -11,6 +11,7 @@ using NetSchoolWeb.Models;
 
 namespace NetSchoolWeb.Controllers
 {
+    [RoutePrefix("Class")]
     public class ClassroomController : Controller
     {
         private SchoolDb db = new SchoolDb();
@@ -21,6 +22,7 @@ namespace NetSchoolWeb.Controllers
             return View(db.Classrooms.ToList());
         }
 
+        [Route("{id:int:min(1)}")]
         // GET: Classroom/Details/5
         public ActionResult Details(int? id)
         {
@@ -43,7 +45,10 @@ namespace NetSchoolWeb.Controllers
         }
 
         // POST: Classroom/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ClassroomID,Name,Floor,Corridor")] Classroom classroom)
         {
             if (ModelState.IsValid)
@@ -72,7 +77,10 @@ namespace NetSchoolWeb.Controllers
         }
 
         // POST: Classroom/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ClassroomID,Name,Floor,Corridor")] Classroom classroom)
         {
             if (ModelState.IsValid)
@@ -101,6 +109,7 @@ namespace NetSchoolWeb.Controllers
 
         // POST: Classroom/Delete/5
         [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             Classroom classroom = db.Classrooms.Find(id);

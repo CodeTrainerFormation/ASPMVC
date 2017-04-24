@@ -1,0 +1,41 @@
+﻿@model IEnumerable<NetSchoolWeb.Models.Student>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2><marquee>Students List</marquee></h2>
+
+@{
+    //var studentCount = Model.Count();
+
+    if (ViewBag.Count > 0)
+    {
+        @: Count : @ViewBag.Count
+    }
+    else
+    {
+        @: No students
+    }
+}
+
+@foreach (var student in Model)
+{
+    <p>
+        FirstName : @student.FirstName<br />
+        LastName : @student.LastName<br />
+        Age : @student.Age<br />
+        Email : @student.Email<br />
+        Average : @student.Average<br />
+        Is class delegate ?
+        @if (student.IsClassDelegate)
+        {
+            @: Yes
+    }
+        else
+        {
+            @: No
+    }
+    </p>
+}
+

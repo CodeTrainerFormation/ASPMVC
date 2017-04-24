@@ -1,0 +1,40 @@
+﻿@model NetSchoolWeb.Models.Student
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+<form method="post">
+    <fieldset>
+        <legend>New Student</legend>
+        <p>
+            <label for="firstName">FirstName</label>
+            <input type="text" name="firstName" value="@Model.FirstName" />
+        </p>
+        <p>
+            <label for="lastName">LastName</label>
+            <input type="text" name="lastName" value="@Model.LastName" />
+        </p>
+        <p>
+            <label for="age">Age</label>
+            <input type="text" name="age" value="@Model.Age" />
+        </p>
+        <p>
+            <label for="email">Email</label>
+            <input type="text" name="email" value="@Model.Email" />
+        </p>
+        <p>
+            <label for="average">Average</label>
+            <input type="text" name="average" value="@Model.Average" />
+        </p>
+        <p>
+            <label for="isclassdelegate">Is class delegate ?</label>
+            <input type="checkbox" name="isclassdelegate" checked="@Model.IsClassDelegate" />
+        </p>
+        <p>
+            <input type="submit" value="Add Student" />
+        </p>
+    </fieldset>
+</form>

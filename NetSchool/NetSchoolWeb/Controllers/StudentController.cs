@@ -14,6 +14,12 @@ namespace NetSchoolWeb.Controllers
     {
         private SchoolDb context = new SchoolDb();
 
+        [ChildActionOnly]
+        public PartialViewResult List()
+        {
+            return PartialView("_StudentsList", context.Students.ToList());
+        }
+
         // GET: Student
         public ActionResult Index()
         {
