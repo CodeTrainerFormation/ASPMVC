@@ -1,5 +1,7 @@
 # Solution Lab-02
 
+[Voir le différentiel avec le lab précédent](https://github.com/CodeTrainerFormation/ASPMVC/commit/8d12d11c0ef0d711c75623f5b381a5570006c5ac)
+
 ## Création des modèles
 
 Dans le dossier `Models`, créer 4 classes : 
