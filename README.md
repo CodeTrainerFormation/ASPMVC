@@ -28,10 +28,10 @@ Dans le dossier `Student`, créer les vues suivantes :
 Pour les vues du contrôleur `Teacher`, procéder de la sorte : 
 - Supprimer le contrôleur `Teacher` actuel
 - Créer un nouveau contrôleur : `Contrôleur MVC5 avec vues, utilisant EntityFramework`
-..- Renseigner le champs `Classe modèle` par le modèle `Teacher`
-..- Sélectionner le bon contexte de données
-..- Cocher la case `Générer les vues`
-..- Nommer le contrôleur `TeacherController`
+  - Renseigner le champs `Classe modèle` par le modèle `Teacher`
+  - Sélectionner le bon contexte de données
+  - Cocher la case `Générer les vues`
+  - Nommer le contrôleur `TeacherController`
 
 En ce qui concerne la [vue partielle](https://github.com/CodeTrainerFormation/ASPMVC/blob/04-Views/NetSchool/NetSchoolWeb/Views/Shared/_StudentsList.cshtml), faire un clic droit sur le dossier `Views/Shared` > Ajouter > Vue... 
 - Nom de la vue : `_StudentsList`
