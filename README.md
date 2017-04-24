@@ -3,10 +3,10 @@
 ## Création des modèles
 
 Dans le dossier `Models`, créer 4 classes : 
-- [Student] (https://github.com/CodeTrainerFormation/ASPMVC/blob/02-Model/NetSchool/NetSchoolWeb/Models/Student.cs)
-- [Classroom] (https://github.com/CodeTrainerFormation/ASPMVC/blob/02-Model/NetSchool/NetSchoolWeb/Models/Classroom.cs)
-- [Teacher] (https://github.com/CodeTrainerFormation/ASPMVC/blob/02-Model/NetSchool/NetSchoolWeb/Models/Teacher.cs)
-- [Person] (https://github.com/CodeTrainerFormation/ASPMVC/blob/02-Model/NetSchool/NetSchoolWeb/Models/Person.cs)
+- [Student](https://github.com/CodeTrainerFormation/ASPMVC/blob/02-Model/NetSchool/NetSchoolWeb/Models/Student.cs)
+- [Classroom](https://github.com/CodeTrainerFormation/ASPMVC/blob/02-Model/NetSchool/NetSchoolWeb/Models/Classroom.cs)
+- [Teacher](https://github.com/CodeTrainerFormation/ASPMVC/blob/02-Model/NetSchool/NetSchoolWeb/Models/Teacher.cs)
+- [Person](https://github.com/CodeTrainerFormation/ASPMVC/blob/02-Model/NetSchool/NetSchoolWeb/Models/Person.cs)
 
 ## Création du contexte de données
 
@@ -16,7 +16,7 @@ Ajouter un dossier `Data` dans le projet
 
 Dans ce dossier, ajouter les classes : 
 - [SchoolDB](https://github.com/CodeTrainerFormation/ASPMVC/blob/02-Model/NetSchool/NetSchoolWeb/Data/SchoolDb.cs) qui hérite de `DbContext`
-- [SchoolInitializer] (https://github.com/CodeTrainerFormation/ASPMVC/blob/02-Model/NetSchool/NetSchoolWeb/Data/SchoolInitializer.cs)
+- [SchoolInitializer](https://github.com/CodeTrainerFormation/ASPMVC/blob/02-Model/NetSchool/NetSchoolWeb/Data/SchoolInitializer.cs)
 
 Ensuite, pour initialiser la base de données, 2 solutions : 
 - Ajouter la ligne suivantes dans la méthode `Application_Start()` du fichier `Global.asax.cs` : 
