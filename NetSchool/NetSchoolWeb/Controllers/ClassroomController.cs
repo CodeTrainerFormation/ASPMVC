@@ -6,8 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using NetSchoolWeb.Data;
-using NetSchoolWeb.Models;
+using DAL;
+using DomainModel;
 
 namespace NetSchoolWeb.Controllers
 {

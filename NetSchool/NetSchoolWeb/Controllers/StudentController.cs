@@ -1,5 +1,5 @@
-﻿using NetSchoolWeb.Data;
-using NetSchoolWeb.Models;
+﻿using DAL;
+using DomainModel;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;

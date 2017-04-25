@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace NetSchoolWeb.Models
+namespace DomainModel
 {
     public class Student : Person
     {

@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.26228.9
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetSchoolWeb", "NetSchoolWeb\NetSchoolWeb.csproj", "{6E6BF0F9-1147-4605-959F-B9893991E7BE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainModel", "DomainModel\DomainModel.csproj", "{E84BA90B-D263-48E9-A870-E241C29FE58D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{B92E2DF5-D0DF-4AB2-A029-4E990F5632D2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{6E6BF0F9-1147-4605-959F-B9893991E7BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E6BF0F9-1147-4605-959F-B9893991E7BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E6BF0F9-1147-4605-959F-B9893991E7BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E84BA90B-D263-48E9-A870-E241C29FE58D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E84BA90B-D263-48E9-A870-E241C29FE58D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E84BA90B-D263-48E9-A870-E241C29FE58D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E84BA90B-D263-48E9-A870-E241C29FE58D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B92E2DF5-D0DF-4AB2-A029-4E990F5632D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B92E2DF5-D0DF-4AB2-A029-4E990F5632D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B92E2DF5-D0DF-4AB2-A029-4E990F5632D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B92E2DF5-D0DF-4AB2-A029-4E990F5632D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

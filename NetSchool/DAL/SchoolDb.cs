@@ -1,11 +1,11 @@
-﻿using NetSchoolWeb.Models;
+﻿using DomainModel;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
-namespace NetSchoolWeb.Data
+namespace DAL
 {
     public class SchoolDb : DbContext
     {
