@@ -43,6 +43,7 @@ namespace DAL
                     Email = "barney.stinson@gnb.com",
                     HiringDate = new DateTime(2008, 08, 30),
                     Classroom = classrooms[0],
+                    Phone = "+33 6 12 34 56 78"
                 },
                 new Teacher()
                 {
@@ -53,6 +54,7 @@ namespace DAL
                     Email = "perry@sacredheart.com",
                     HiringDate = new DateTime(2000, 05, 15),
                     Classroom = classrooms[1],
+                    Phone = "07 98 76 54 32"
                 },
             };
             context.Teachers.AddRange(teachers);

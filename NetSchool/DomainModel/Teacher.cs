@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DomainModel.Validators;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -15,6 +16,9 @@ namespace DomainModel
         [DisplayName("Hiring Date")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yy}", ApplyFormatInEditMode = true)]
         public DateTime HiringDate { get; set; }
+
+        [PhoneNumber]
+        public string Phone { get; set; }
 
         public virtual Classroom Classroom { get; set; }
 
