@@ -11,7 +11,7 @@ using DomainModel;
 
 namespace NetSchoolWeb.Controllers
 {
-    [RoutePrefix("Class")]
+    [RoutePrefix("class")]
     public class ClassroomController : Controller
     {
         private SchoolDb db = new SchoolDb();
@@ -23,6 +23,7 @@ namespace NetSchoolWeb.Controllers
         }
 
         [Route("{id:int:min(1)}")]
+        [Route("view/{id}")]
         // GET: Classroom/Details/5
         public ActionResult Details(int? id)
         {

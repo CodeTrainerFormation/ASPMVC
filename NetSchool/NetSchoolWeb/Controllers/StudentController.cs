@@ -130,6 +130,7 @@ namespace NetSchoolWeb.Controllers
             return RedirectToAction("Index");
         }
 
+        [ActionName("StudentPhoto")]
         public ActionResult Photo(int studentid)
         {
             return Redirect("https://www.youtube.com/watch?v=oavMtUWDBTM&t=30");

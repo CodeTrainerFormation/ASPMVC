@@ -1,147 +1,147 @@
-# Solution Lab-05
+# Solution Lab-06
 
-[Voir le différentiel avec le lab précédent](https://github.com/CodeTrainerFormation/ASPMVC/commit/00dab1cd01c9aebf514ed8c85ca62ec350f9c066)
+[Voir le différentiel avec le lab précédent]()
 
-La solution présentée ci dessous ne contient pas l'injection de dépendances
+La solution présentée ci dessous repart de la solution du **Lab-05 sans injection de dépendances** 
 
-## Séparer la solution
+## Créer les routes
 
-### Création des projets
-
-Dans la solution, ajouter 2 nouveaux projets de type `Librairie de classes` nommés: 
-- DAL
-- DomainModel
-
-Ajouter les références suivantes : 
-- Dans le projet DAL : 
-  - EntityFramework
-  - DomainModel
-- Dans le projet DomainModel : 
-  - System.ComponentModel.DataAnnotations
-- Dans le projet NetSchool : 
-  - DAL
-  - DomainModel
-
-### Mis à jour des projets
-
-L'étape suivante consiste à déplacer les fichiers précédemment créés dans les nouveaux projets : 
-- Les classes se trouvant dans le dossier `Models` sont déplacées dans le projet `DomainModel`.
-- Les classes se trouvant dans le dossier `Data` sont déplacées dans le projet `DAL`.
-
-**Attention ! Modifier les namespaces en fonction du projet dans lequel les classes se situent.**
-
-- `NetSchool.Data` devient `DAL`
-- `NetSchool.Models` devient `DomainModel` 
-
-**Les `using` des contrôleurs sont également à mettre à jour.**
-
-**Les vues qui utilise un `@model` sont également impactées par ce changement.**
-
-L'initialisation de la base de données dans le fichier `Web.config` doit être édtiée : 
-```xml
-  ...
-  <context type="DAL.SchoolDb, DAL">
-    <databaseInitializer type="DAL.SchoolInitializer, DAL" />
-  </context>
-  ...
-```
-
-## Helper HTML
-
-### Création
-
-Dans le projet NetSchool, créer un dossier `SDK`, et dans ce dossier, créer un dossier `Helpers`.
-
-> Le helper créé ci dessous ne sera pas une méthode d'extension d'un helper existant
-
-Dans le dossier `Helpers`, créer une classe `FormHelper`. 
-
-Le helper proposé a pour but de créer un bouton `submit` dans un formulaire.
-
-Au sein de la classe, créer une méthode SubmitBtn comme suit : 
+Créer la route `StudentPhoto` dans le contrôleur `SutdentController` : 
 ```C#
-public class FormHelper
+[ActionName("StudentPhoto")]
+public ActionResult Photo(int studentid)
 {
-
-    public static IHtmlString SubmitBtn(string content = null, string classname = null)
-    {
-        content = content ?? "Envoyer";
-        classname = classname ?? "default";
-
-        return new HtmlString(string.Format("<input type=\"submit\" value=\"{0}\" class=\"btn btn-{1}\" />", content, classname));
-    }
-
+    return Redirect("https://www.youtube.com/watch?v=oavMtUWDBTM&t=30");
 }
 ```
 
-### Utilisation
-
-Renseigner dans le fichier `Views\web.config` le namespace du helper.
-
-```xml
-<configuration>
-  ...
-  <system.web.webPages.razor>
-    ...
-    <pages pageBaseType="System.Web.Mvc.WebViewPage">
-      <namespaces>
-        ...
-        <add namespace="NetSchoolWeb.SDK.Helpers" />
-      </namespaces>
-    </pages>
-  </system.web.webPages.razor>
-  ...
-</configuration>
-```
-
-Le helper est maintenant utilisable dans une vue : 
-```cshtml
-@FormHelper.SubmitBtn("Créer", "success")
-```
-
-## Validateur
-
-### Création
-
-Créer un dossier `Validators` soit : 
-- dans le projet `DomainModel` si la solution est séparée en plusieurs projets
-- dans le dossier `SDK` du projet `NetSchool` si la séparation des projets n'a pas été faite
-
-Dans ce dossier créer une classe `PhoneNumber` qui hérite de `ValidationAttribute`.
-
-Surcharger la méthode `IsValid(object value, ValidationContext validationContext)` : 
+Créer un prefix de route, deux solutions.
+- Première solution : les annotations : 
+  - Dans le fichier `App_Start\RouteConfig.cs`, ajouter la ligne suivante
 ```C#
-public class PhoneNumber : ValidationAttribute
+public static void RegisterRoutes(RouteCollection routes)
 {
+    routes.MapMvcAttributeRoutes();
+    // ...
+}
+```
+  - Ajouter l'annoation `RoutePrefix("prefix")` au contrôleur, et l'annotation `Route` sur toutes ses actions
+```C#
+[RoutePrefix("class")]
+public class ClassroomController : Controller
+{
+    private SchoolDb db = new SchoolDb();
 
-    protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+    // GET: Classroom
+    [Route]
+    public ActionResult Index()
     {
-        String phone = Convert.ToString(value);
-
-        Regex regPhoneNumber = new Regex(@"^(\+33 |0)[1-9]( \d\d){4}$");
-        if (!regPhoneNumber.IsMatch(phone))
-        {
-            return new ValidationResult("Format invalide : +33 X XX XX XX XX ou XX XX XX XX XX sont autorisés");
-        }
-
-        return ValidationResult.Success;
+        return View(db.Classrooms.ToList());
     }
+	//...
+}
+```
+- Seconde solution : nouvelle "map" de route
+  - Dans le fichier `App_Start\RouteConfig.cs`, ajouter une nouvelle "map" 
+```C#
+public static void RegisterRoutes(RouteCollection routes)
+{
+    routes.MapRoute(
+        name: "classroom",
+        url: "class/{action}/{id}",
+        defaults: new { controller = "Classroom", action = "Index", id = UrlParameter.Optional }
+    );
 
+    //...
 }
 ```
 
-> L'expression régulière permet de vérifier 2 formats de numéros : '+33 X YY ZZ AA BB' ou '0X YY ZZ AA BB'
-
-### Utilisation
-
-Il suffit d'utiliser la classe comme une annotation sur un modèle.
-
-Par exemple, sur la classe `Teacher`, il est possible d'ajouter une propriété `Phone` : 
-
+Créer un prefix d'action : 
+- Dans le fichier `App_Start\RouteConfig.cs`, ajouter la ligne suivante
 ```C#
-public class Teacher : Person
+public static void RegisterRoutes(RouteCollection routes)
 {
-    [PhoneNumber]
-    public string Phone { get; set; }
+    routes.MapMvcAttributeRoutes();
+    // ...
+}
+```
+- Dans le contrôleur `ClassroomController` : 
+```C#
+public class ClassroomController : Controller
+{
+    [Route("view/{id}")]
+    public ActionResult Details(int? id)
+    {
+        // ...
+    }
+	//...
+}
+```
+
+Créer une route directement sur une action : 
+- Dans le contrôleur `TeacherController`
+```C#
+public class TeacherController : Controller
+{
+
+    // GET: Teacher
+    [Route("Prof")]
+    [Route("Prof/List")]
+    public ActionResult Index()
+    {
+        return View(db.Teachers.ToList());
+    }
+	// ...
+}
+```
+
+## Création d'une contrainte
+
+Créer un dossier `Infrastructure` dans le projet `NetSchool`.
+
+Dans le dossier `Infrastructure`, créer une classe `DateConstraint`.
+```C#
+public class DateConstraint : IRouteConstraint
+{
+    public bool Match(HttpContextBase httpContext, Route route, string parameterName, RouteValueDictionary values, RouteDirection routeDirection)
+    {
+        DateTime datetime;
+
+        bool result = DateTime.TryParseExact(values[parameterName].ToString(),
+        "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.None, out datetime);
+
+        return result;
+    }
+}
+```
+
+Dans le contrôleur `TeacherController`, créer une action `IndexDateFilter` 
+```C#
+public ActionResult IndexDateFilter(string datetime)
+{
+    DateTime hiringDate;
+    DateTime.TryParseExact(datetime, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.None, out hiringDate);
+
+    return View("Index", db.Teachers.Where(t => t.HiringDate > hiringDate).ToList());
+}
+```
+
+Dans le fichier `App_Start\RouteConfig.cs`, ajouter une route
+```C#
+public class RouteConfig
+{
+    public static void RegisterRoutes(RouteCollection routes)
+    {
+        //...
+
+        routes.MapRoute(
+            name: "TeacherHiringDate",
+            url: "Prof/{datetime}",
+            defaults: new { controller = "Teacher", action = "IndexDateFilter" },
+            constraints: new { datetime = new DateConstraint() }
+        );
+
+        //...
+    }
 }
 ```

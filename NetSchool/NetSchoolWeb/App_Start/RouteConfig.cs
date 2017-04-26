@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NetSchoolWeb.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +13,21 @@ namespace NetSchoolWeb
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+            routes.MapMvcAttributeRoutes();
+
+            routes.MapRoute(
+                name: "classroom",
+                url: "class/{action}/{id}",
+                defaults: new { controller = "Classroom", action = "Index", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "TeacherHiringDate",
+                url: "Prof/{datetime}",
+                defaults: new { controller = "Teacher", action = "IndexDateFilter" },
+                constraints: new { datetime = new DateConstraint() }
+            );
 
             routes.MapRoute(
                 name: "Default",
