@@ -1,12 +1,12 @@
 # Solution Lab-06
 
-[Voir le différentiel avec le lab précédent]()
+[Voir le différentiel avec le lab précédent](https://github.com/CodeTrainerFormation/ASPMVC/commit/cc6db7297384ff7f993fd5eca2748e2110987afc?diff=split)
 
 La solution présentée ci dessous repart de la solution du **Lab-05 sans injection de dépendances** 
 
 ## Créer les routes
 
-Créer la route `StudentPhoto` dans le contrôleur `SutdentController` : 
+Créer la route `StudentPhoto` dans le contrôleur `StudentController` : 
 ```C#
 [ActionName("StudentPhoto")]
 public ActionResult Photo(int studentid)
@@ -38,7 +38,7 @@ public class ClassroomController : Controller
     {
         return View(db.Classrooms.ToList());
     }
-	//...
+    //...
 }
 ```
 - Seconde solution : nouvelle "map" de route
@@ -74,7 +74,7 @@ public class ClassroomController : Controller
     {
         // ...
     }
-	//...
+    //...
 }
 ```
 
@@ -91,7 +91,7 @@ public class TeacherController : Controller
     {
         return View(db.Teachers.ToList());
     }
-	// ...
+    // ...
 }
 ```
 
