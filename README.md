@@ -133,7 +133,7 @@ public class StudentRepository : IStudentRepository
         return context.SaveChanges();
     }
 
-	public void Dispose()
+    public void Dispose()
     {
         context.Dispose();
     }
@@ -185,4 +185,4 @@ public class StudentController : Controller
 }
 ```
 
-[Voir le reste des modifications du contrôleur](https://github.com/CodeTrainerFormation/ASPMVC/blob/05-SoC-DI/NetSchool/NetSchoolWeb/Controllers/StudentController.cs)
+[Voir le reste des modifications du contrôleur](https://github.com/CodeTrainerFormation/ASPMVC/commit/45486f64bccb9a7bf2eb16d9ef3cdee9a91fb8d1#diff-6d795c560204f2b2a81a379a351f55dd)
