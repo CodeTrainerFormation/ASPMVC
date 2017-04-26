@@ -1,5 +1,6 @@
 ﻿using DAL;
 using DomainModel;
+using Repository.Repositories.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -12,23 +13,28 @@ namespace NetSchoolWeb.Controllers
 {
     public class StudentController : Controller
     {
-        private SchoolDb context = new SchoolDb();
+        private IStudentRepository repository;
+
+        public StudentController(IStudentRepository studentRepository)
+        {
+            this.repository = studentRepository;
+        }
 
         [ChildActionOnly]
         public PartialViewResult List()
         {
-            return PartialView("_StudentsList", context.Students.ToList());
+            return PartialView("_StudentsList", repository.AllStudents());
         }
 
         // GET: Student
         public ActionResult Index()
         {
-            var students = context.Students.ToList();
+            var students = repository.AllStudents();
 
 
-            if (students.Count > 0)
+            if (students.ToList().Count > 0)
             {
-                ViewBag.Count = students.Count;
+                ViewBag.Count = students.ToList().Count;
                 return View("IndexList", students);
             }
             else
@@ -42,7 +48,7 @@ namespace NetSchoolWeb.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Student student = context.Students.Find(id);
+            Student student = repository.GetStudent(id.Value);
             if (student == null)
             {
                 return HttpNotFound();
@@ -62,8 +68,7 @@ namespace NetSchoolWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                context.Students.Add(student);
-                context.SaveChanges();
+                repository.AddStudent(student);
 
                 return RedirectToAction("Index");
             }
@@ -73,7 +78,7 @@ namespace NetSchoolWeb.Controllers
         // GET: Student/Edit/5
         public ActionResult Edit(int id)
         {
-            Student student = context.Students.Find(id);
+            Student student = repository.GetStudent(id);
 
             if (student == null)
                 return HttpNotFound();
@@ -87,8 +92,7 @@ namespace NetSchoolWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                context.Entry(student).State = EntityState.Modified;
-                context.SaveChanges();
+                repository.EditStudent(student);
 
                 return RedirectToAction("Index");
             }
@@ -99,7 +103,7 @@ namespace NetSchoolWeb.Controllers
         // GET: Student/Delete/5
         public ActionResult Delete(int id)
         {
-            Student student = context.Students.Find(id);
+            Student student = repository.GetStudent(id);
 
             if (student == null)
                 return HttpNotFound();
@@ -122,10 +126,7 @@ namespace NetSchoolWeb.Controllers
         [ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
-            Student student = context.Students.Find(id);
-
-            context.Students.Remove(student);
-            context.SaveChanges();
+            repository.DeleteStudent(id);
 
             return RedirectToAction("Index");
         }
@@ -137,7 +138,7 @@ namespace NetSchoolWeb.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            context.Dispose();
+            repository.Dispose();
             base.Dispose(disposing);
         }
     }

@@ -1,4 +1,6 @@
 ﻿using Ninject;
+using Repository.Repositories;
+using Repository.Repositories.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +31,7 @@ namespace NetSchoolWeb.Infrastructure
 
         public void AddBindings()
         {
-
+            kernel.Bind<IStudentRepository>().To<StudentRepository>();
         }
     }
 }
