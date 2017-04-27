@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainModel", "DomainModel\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{B92E2DF5-D0DF-4AB2-A029-4E990F5632D2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetSchoolTest", "NetSchoolTest\NetSchoolTest.csproj", "{C97467C1-EE6C-4374-A796-856EFF28CBDF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{B92E2DF5-D0DF-4AB2-A029-4E990F5632D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B92E2DF5-D0DF-4AB2-A029-4E990F5632D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B92E2DF5-D0DF-4AB2-A029-4E990F5632D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C97467C1-EE6C-4374-A796-856EFF28CBDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C97467C1-EE6C-4374-A796-856EFF28CBDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C97467C1-EE6C-4374-A796-856EFF28CBDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C97467C1-EE6C-4374-A796-856EFF28CBDF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

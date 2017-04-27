@@ -14,6 +14,19 @@ namespace NetSchoolWeb.Controllers
     {
         private SchoolDb context = new SchoolDb();
 
+        protected override void OnException(ExceptionContext filterContext)
+        {
+            if (filterContext.ExceptionHandled)
+            {
+                return;
+            }
+            filterContext.Result = new ViewResult
+            {
+                ViewName = "~/Views/Shared/Error.cshtml"
+            };
+            filterContext.ExceptionHandled = true;
+        }
+
         [ChildActionOnly]
         public PartialViewResult List()
         {
@@ -36,16 +49,24 @@ namespace NetSchoolWeb.Controllers
         }
 
         // GET: Student/Details/5
+        [HandleError]
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Student student = context.Students.Find(id);
-            if (student == null)
+            Student student = null;
+            try
+            {
+                student = context.Students.Find(id);
+            }catch(InvalidOperationException ioe)
             {
                 return HttpNotFound();
+            }
+            if (student == null)
+            {
+                throw new HttpException(404, "Error");
             }
             return View(student);
         }

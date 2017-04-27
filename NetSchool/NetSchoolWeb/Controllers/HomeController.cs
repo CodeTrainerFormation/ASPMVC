@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace NetSchoolWeb.Controllers
 {
+    [HandleError]
     public class HomeController : Controller
     {
         private SchoolDb context = new SchoolDb();

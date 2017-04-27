@@ -33,6 +33,7 @@ namespace NetSchoolWeb.Controllers
         }
 
         // GET: Teacher/Details/5
+        [HandleError(ExceptionType = typeof(HttpException), View = "Error404")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -42,7 +43,7 @@ namespace NetSchoolWeb.Controllers
             Teacher teacher = db.Teachers.Find(id);
             if (teacher == null)
             {
-                return HttpNotFound();
+                throw new HttpException();
             }
             return View(teacher);
         }

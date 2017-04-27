@@ -186,6 +186,7 @@
     <Content Include="Views\Classroom\View.cshtml" />
     <Content Include="Views\Shared\_StudentsList.cshtml" />
     <Content Include="Views\Shared\_TeacherMaster.cshtml" />
+    <None Include="Views\Shared\Error404.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
