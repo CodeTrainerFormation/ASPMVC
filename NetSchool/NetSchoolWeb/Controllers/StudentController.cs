@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace NetSchoolWeb.Controllers
 {
+    [Authorize]
     public class StudentController : Controller
     {
         private SchoolDb context = new SchoolDb();

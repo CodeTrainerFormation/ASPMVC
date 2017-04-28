@@ -12,6 +12,7 @@ using System.Globalization;
 
 namespace NetSchoolWeb.Controllers
 {
+    [Authorize]
     public class TeacherController : Controller
     {
         private SchoolDb db = new SchoolDb();

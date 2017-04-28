@@ -1,4 +1,5 @@
 ﻿using DomainModel;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -7,7 +8,7 @@ using System.Web;
 
 namespace DAL
 {
-    public class SchoolDb : DbContext
+    public class SchoolDb : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Person> Persons { get; set; }
         public DbSet<Classroom> Classrooms { get; set; }
@@ -17,6 +18,11 @@ namespace DAL
         public SchoolDb()
             : base("SchoolDatabase")
         {
+        }
+
+        public static SchoolDb Create()
+        {
+            return new SchoolDb();
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

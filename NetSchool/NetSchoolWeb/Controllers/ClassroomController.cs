@@ -12,6 +12,7 @@ using System.Web.UI;
 
 namespace NetSchoolWeb.Controllers
 {
+    [Authorize]
     [RoutePrefix("class")]
     public class ClassroomController : Controller
     {
