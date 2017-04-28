@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using DAL;
 using DomainModel;
+using System.Web.UI;
 
 namespace NetSchoolWeb.Controllers
 {
@@ -17,6 +18,7 @@ namespace NetSchoolWeb.Controllers
         private SchoolDb db = new SchoolDb();
 
         // GET: Classroom
+        [OutputCache(Duration = 60, Location = OutputCacheLocation.Server)]
         public ActionResult Index()
         {
             return View(db.Classrooms.ToList());

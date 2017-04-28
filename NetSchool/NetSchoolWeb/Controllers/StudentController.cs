@@ -27,7 +27,6 @@ namespace NetSchoolWeb.Controllers
             filterContext.ExceptionHandled = true;
         }
 
-        [ChildActionOnly]
         public PartialViewResult List()
         {
             return PartialView("_StudentsList", context.Students.ToList());
@@ -69,6 +68,21 @@ namespace NetSchoolWeb.Controllers
                 throw new HttpException(404, "Error");
             }
             return View(student);
+        }
+
+        public JsonResult AjaxDetail(int id)
+        {
+            if(!this.Request.IsAjaxRequest())
+            {
+                return Json(null);
+            }
+            Student student = context.Students.Find(id);
+
+            return Json(new {
+                name = student.FirstName + " " + student.LastName,
+                age = student.Age,
+                classroom = student.Classroom.Name
+            }, JsonRequestBehavior.AllowGet);
         }
 
         // GET: Student/Create
